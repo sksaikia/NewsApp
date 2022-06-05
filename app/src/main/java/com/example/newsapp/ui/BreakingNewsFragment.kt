@@ -20,6 +20,7 @@ import com.example.newsapp.common.presentation.NewsViewModel
 import com.example.newsapp.common.presentation.adapter.NewsAdapter
 import com.example.newsapp.core.network.Resource
 import com.example.newsapp.databinding.FragmentBreakingNewsBinding
+import com.google.android.material.snackbar.Snackbar
 import javax.inject.Inject
 
 class BreakingNewsFragment : Fragment() {
@@ -87,7 +88,7 @@ class BreakingNewsFragment : Fragment() {
     private fun handleError(response: Resource.Error<NewsResponse>) {
         hideProgressBar()
         response.message?.let { message ->
-            Log.e(TAG, "handleError: $message")
+            view?.let { Snackbar.make(it,"An error occured $message ", Snackbar.LENGTH_SHORT).show() }
         }
     }
 
